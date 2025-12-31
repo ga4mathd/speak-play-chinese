@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Shield, Truck, RotateCcw } from "lucide-react";
+import { Shield, Truck, RotateCcw, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Order = () => {
   const navigate = useNavigate();
@@ -27,15 +28,39 @@ const Order = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Order Placed!",
-      description: "Redirecting to confirmation...",
-    });
-    
-    navigate("/thank-you");
+
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          customerEmail: formData.email,
+          customerName: formData.fullName,
+          shippingAddress: {
+            line1: formData.street,
+            city: formData.city,
+            state: formData.state,
+            postal_code: formData.zipCode,
+            country: "US",
+            phone: formData.phone,
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL received");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to create checkout session. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -171,7 +196,14 @@ const Order = () => {
               disabled={isSubmitting} 
               className="w-full gradient-cta text-primary-foreground text-base py-5 h-auto rounded-lg shadow-cta font-semibold"
             >
-              {isSubmitting ? "Processing..." : "Pay $149"}
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Redirecting to payment...
+                </>
+              ) : (
+                "Pay $149"
+              )}
             </Button>
           </form>
         </div>
