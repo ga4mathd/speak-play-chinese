@@ -15,28 +15,34 @@ import FAQSection from "@/components/landing/FAQSection";
 import GuaranteeSection from "@/components/landing/GuaranteeSection";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 import StickyOrderButton from "@/components/landing/StickyOrderButton";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <main className="pb-20 lg:pb-0">
-      <HeroSection />
-      <ProblemSection />
-      <SolutionSection />
-      <WhatsInsideSection />
-      <LanguagesSection />
-      <LearnByPlayingSection />
-      <QuizSection />
-      <SongsSection />
-      <SafetySection />
-      <BonusSection />
-      <ComparisonSection />
-      <TestimonialsSection />
-      <WhatYouGetSection />
-      <FAQSection />
-      <GuaranteeSection />
-      <FinalCTASection />
-      <StickyOrderButton />
-    </main>
+    <>
+      <main className="pb-20 lg:pb-0">
+        <HeroSection />
+        <ProblemSection />
+        <SolutionSection />
+        <WhatsInsideSection />
+        <LanguagesSection />
+        <LearnByPlayingSection />
+        <QuizSection />
+        <SongsSection />
+        <SafetySection />
+        <BonusSection />
+        <ComparisonSection />
+        <TestimonialsSection />
+        <WhatYouGetSection />
+        <div id="faq">
+          <FAQSection />
+        </div>
+        <GuaranteeSection />
+        <FinalCTASection />
+        <StickyOrderButton />
+      </main>
+      <Footer />
+    </>
   );
 };
 
