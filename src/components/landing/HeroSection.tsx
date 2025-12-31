@@ -1,67 +1,59 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import heroImage from "@/assets/images/hero.jpeg";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden gradient-hero py-12 lg:py-20">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+    <section className="relative overflow-hidden gradient-hero py-8 lg:py-20">
+      <div className="container mx-auto px-4 lg:px-4">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
+          {/* Hero Image - Mobile First */}
+          <div className="w-full lg:flex-1 -mx-4 lg:mx-0 order-first lg:order-last animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <img 
+              src={heroImage} 
+              alt="Sách học tiếng Hoa tương tác 3 ngôn ngữ cho trẻ em" 
+              className="w-full h-auto lg:rounded-3xl"
+            />
+          </div>
+
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left animate-fade-in">
+          <div className="flex-1 text-center lg:text-left animate-fade-in px-4 lg:px-0">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 gradient-badge text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 gradient-badge text-primary-foreground px-3 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs lg:text-sm font-semibold mb-4 lg:mb-6">
               <span className="text-secondary">⭐⭐⭐⭐⭐</span>
-              <span>#1 Bestseller in China | 1 Million+ Sold</span>
+              <span>#1 Bestseller | 1M+ Sold</span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+            <h1 className="font-display text-2xl md:text-4xl lg:text-6xl font-bold text-foreground leading-tight mb-4 lg:mb-6">
               Your Child Learns Chinese{" "}
               <span className="text-gradient">Just By Touching</span>{" "}
               The Pages
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
+            <p className="text-base lg:text-xl text-muted-foreground mb-6 lg:mb-8 max-w-xl mx-auto lg:mx-0">
               The interactive trilingual book that makes learning Mandarin, English, and Cantonese fun and effortless.
             </p>
 
             {/* Price */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
-              <span className="text-2xl text-muted-foreground line-through">$199</span>
-              <span className="text-5xl font-bold text-accent font-display">$149</span>
-              <span className="bg-success text-success-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                Free US Shipping
+            <div className="flex items-center justify-center lg:justify-start gap-3 lg:gap-4 mb-6 lg:mb-8">
+              <span className="text-xl lg:text-2xl text-muted-foreground line-through">$199</span>
+              <span className="text-4xl lg:text-5xl font-bold text-accent font-display">$149</span>
+              <span className="bg-success text-success-foreground px-2 py-1 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm font-semibold">
+                Free Shipping
               </span>
             </div>
 
             {/* CTA Button */}
-            <Link to="/order">
+            <Link to="/order" className="block">
               <Button 
                 size="lg" 
-                className="gradient-cta text-primary-foreground text-xl px-12 py-6 h-auto rounded-2xl shadow-cta hover:scale-105 transition-transform animate-pulse-glow"
+                className="gradient-cta text-primary-foreground text-lg lg:text-xl px-8 lg:px-12 py-5 lg:py-6 h-auto rounded-2xl shadow-cta hover:scale-105 transition-transform animate-pulse-glow w-full lg:w-auto"
               >
                 ORDER NOW
               </Button>
             </Link>
-          </div>
-
-          {/* Hero Image */}
-          <div className="flex-1 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="relative">
-              <div className="bg-card rounded-3xl shadow-card p-4 lg:p-8">
-                {/* Placeholder for hero image */}
-                <div className="aspect-square bg-secondary/30 rounded-2xl flex items-center justify-center">
-                  <span className="text-muted-foreground text-center p-8">
-                    [Hero Product Image]<br />
-                    Ảnh #10 - aab67db9
-                  </span>
-                </div>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-secondary rounded-full opacity-60 blur-xl"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-accent rounded-full opacity-40 blur-xl"></div>
-            </div>
           </div>
         </div>
       </div>
