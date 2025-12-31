@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { Shield, Truck, RotateCcw } from "lucide-react";
 
 const Order = () => {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const Order = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate order processing
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     toast({
@@ -39,84 +39,158 @@ const Order = () => {
   };
 
   return (
-    <main className="min-h-screen bg-muted py-12">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <div className="text-center mb-8">
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+    <main className="min-h-screen bg-muted py-6 lg:py-12">
+      <div className="container mx-auto px-4 max-w-lg">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="font-display text-xl lg:text-2xl font-bold text-foreground mb-1">
             Complete Your Order
           </h1>
-          <p className="text-muted-foreground">
-            You're one step away from helping your child learn Chinese!
+          <p className="text-muted-foreground text-sm">
+            You're one step away from helping your child learn Chinese
           </p>
         </div>
 
-        <div className="bg-card rounded-3xl shadow-card p-6 md:p-8 mb-6">
-          {/* Order Summary */}
-          <div className="bg-muted rounded-2xl p-4 mb-8">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="font-display font-bold text-foreground">Interactive Trilingual Book</p>
-                <p className="text-sm text-muted-foreground">80 topics • 3 languages • Quiz mode</p>
+        <div className="bg-card rounded-xl shadow-card p-4 lg:p-6 mb-4">
+          {/* Order Summary - Compact */}
+          <div className="bg-muted rounded-lg p-3 mb-5">
+            <div className="flex justify-between items-start gap-3">
+              <div className="flex-1 min-w-0">
+                <p className="font-display font-semibold text-foreground text-sm">Interactive Trilingual Book</p>
+                <p className="text-xs text-muted-foreground">80 topics • 3 languages • Quiz mode</p>
               </div>
-              <div className="text-right">
-                <p className="text-sm text-muted-foreground line-through">$199</p>
-                <p className="text-2xl font-bold text-accent font-display">$149</p>
+              <div className="text-right flex-shrink-0">
+                <p className="text-xs text-muted-foreground line-through">$199</p>
+                <p className="text-lg font-bold text-primary font-display">$149</p>
               </div>
             </div>
-            <div className="border-t border-border mt-4 pt-4 flex justify-between">
-              <span className="font-semibold">Total</span>
-              <span className="font-bold text-xl text-foreground">$149 USD</span>
+            <div className="border-t border-border mt-3 pt-3 flex justify-between items-center">
+              <span className="font-medium text-sm">Total</span>
+              <span className="font-bold text-foreground">$149 USD</span>
             </div>
-            <p className="text-sm text-success mt-2">✓ Free US Shipping Included</p>
           </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Form - Compact */}
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="fullName">Full Name</Label>
-              <Input id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} required placeholder="John Doe" className="mt-1" />
+              <Label htmlFor="fullName" className="text-xs">Full Name</Label>
+              <Input 
+                id="fullName" 
+                name="fullName" 
+                value={formData.fullName} 
+                onChange={handleChange} 
+                required 
+                placeholder="John Doe" 
+                className="mt-1 h-10 text-sm"
+              />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="john@example.com" className="mt-1" />
+                <Label htmlFor="email" className="text-xs">Email</Label>
+                <Input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  required 
+                  placeholder="john@example.com" 
+                  className="mt-1 h-10 text-sm"
+                />
               </div>
               <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required placeholder="(555) 123-4567" className="mt-1" />
+                <Label htmlFor="phone" className="text-xs">Phone</Label>
+                <Input 
+                  id="phone" 
+                  name="phone" 
+                  type="tel" 
+                  value={formData.phone} 
+                  onChange={handleChange} 
+                  required 
+                  placeholder="(555) 123-4567" 
+                  className="mt-1 h-10 text-sm"
+                />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="street">Street Address</Label>
-              <Input id="street" name="street" value={formData.street} onChange={handleChange} required placeholder="123 Main St, Apt 4" className="mt-1" />
+              <Label htmlFor="street" className="text-xs">Street Address</Label>
+              <Input 
+                id="street" 
+                name="street" 
+                value={formData.street} 
+                onChange={handleChange} 
+                required 
+                placeholder="123 Main St, Apt 4" 
+                className="mt-1 h-10 text-sm"
+              />
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
-                <Label htmlFor="city">City</Label>
-                <Input id="city" name="city" value={formData.city} onChange={handleChange} required placeholder="San Francisco" className="mt-1" />
+                <Label htmlFor="city" className="text-xs">City</Label>
+                <Input 
+                  id="city" 
+                  name="city" 
+                  value={formData.city} 
+                  onChange={handleChange} 
+                  required 
+                  placeholder="San Francisco" 
+                  className="mt-1 h-10 text-sm"
+                />
               </div>
               <div>
-                <Label htmlFor="state">State</Label>
-                <Input id="state" name="state" value={formData.state} onChange={handleChange} required placeholder="CA" className="mt-1" />
+                <Label htmlFor="state" className="text-xs">State</Label>
+                <Input 
+                  id="state" 
+                  name="state" 
+                  value={formData.state} 
+                  onChange={handleChange} 
+                  required 
+                  placeholder="CA" 
+                  className="mt-1 h-10 text-sm"
+                />
               </div>
               <div>
-                <Label htmlFor="zipCode">ZIP Code</Label>
-                <Input id="zipCode" name="zipCode" value={formData.zipCode} onChange={handleChange} required placeholder="94102" className="mt-1" />
+                <Label htmlFor="zipCode" className="text-xs">ZIP</Label>
+                <Input 
+                  id="zipCode" 
+                  name="zipCode" 
+                  value={formData.zipCode} 
+                  onChange={handleChange} 
+                  required 
+                  placeholder="94102" 
+                  className="mt-1 h-10 text-sm"
+                />
               </div>
             </div>
 
-            <Button type="submit" disabled={isSubmitting} className="w-full gradient-cta text-primary-foreground text-xl py-6 h-auto rounded-2xl shadow-cta">
+            <Button 
+              type="submit" 
+              disabled={isSubmitting} 
+              className="w-full gradient-cta text-primary-foreground text-base py-5 h-auto rounded-lg shadow-cta font-semibold"
+            >
               {isSubmitting ? "Processing..." : "Pay $149"}
             </Button>
           </form>
         </div>
 
-        <p className="text-center text-sm text-muted-foreground">
-          🔒 Secure checkout • 30-day money-back guarantee
-        </p>
+        {/* Trust badges - Inline */}
+        <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <Truck className="w-3.5 h-3.5" />
+            <span>Free Shipping</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>30-Day Return</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Shield className="w-3.5 h-3.5" />
+            <span>Secure</span>
+          </div>
+        </div>
       </div>
     </main>
   );
